@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>결제창</h1>
+    <p id="explain"></p>
+    <p>신용카드 번호를 입력하고 결제 버튼을 눌러 주세요.</p>
+    <form>
+      <input type="text" id="card-num" />
+      <button id="pay">결제</button>
+    </form>
+    <script>
+      // console.log(opener.price);
+      let explain = document.getElementById("explain");
+
+      let pay = document.getElementById("pay");
+      explain.innerText = `${opener.price
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원을 결제하겠습니다.`;
+      pay.addEventListener("click", function (e) {
+        let cardNum = document.getElementById("card-num").value;
+        alert(
+          `${cardNum}으로 ${opener.price
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원이 결제 완료 되었습니다.`
+        );
+        close();
+        opener.location.reload(); // 부모창을 초기화 하는 코드
+      });
+    </script>
+  </body>
+</html>
